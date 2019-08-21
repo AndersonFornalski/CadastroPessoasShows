@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+body{
+	background-image: url("img/showSlip.jpg"); 
+}
+.container{
+	color: white;
+	background-color: transparent;
+	width: 600px;
+	margin-top: 226px;
+	margin-left: 400px;
+}
