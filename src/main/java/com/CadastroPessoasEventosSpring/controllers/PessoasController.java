@@ -21,18 +21,22 @@ public class PessoasController{
 	@GetMapping(value = "/cadastroPessoas")
 	public ModelAndView inicio(){		
 		
-		ModelAndView mv = new ModelAndView("pessoas/cadastroPessoas");
+		ModelAndView mv = new ModelAndView("pessoas/cadastroPessoas");	
+		mv.addObject("pessoasObj", new Pessoas());
 		mv.addObject("lista", pessoaService.findAll());
+		
 		
 		return mv;
 	}	
 	
 /*MÉTODO SALVAR*/	
-	@PostMapping(value = "/salvarPessoa") 
+	@PostMapping(value = "**/salvarPessoa") 
 	public ModelAndView salvar(Pessoas pessoas){
 		ModelAndView mv = new ModelAndView("pessoas/cadastroPessoas");		
-		pessoaService.save(pessoas);		
-		mv.addObject("lista", pessoaService.findAll());
+		pessoaService.save(pessoas);
+		mv.addObject("lista", pessoaService.findAll());		
+		mv.addObject("pessoasObj", new Pessoas());
+		
 		
 		return mv;
 		
@@ -49,20 +53,23 @@ public class PessoasController{
 	}
 /*MÉTODO EDITAR PELO ID*/
 	@GetMapping(value = "/editarpessoa/{id}")
-	public ModelAndView editar(@PathVariable("id") Long id) {
+	public ModelAndView editar(@PathVariable("id") Long id) {	
 		
-		ModelAndView mv = new ModelAndView("pessoas/cadastroPessoas");
-		mv.addObject(pessoaService.findOne(id));
+        ModelAndView mv = new ModelAndView("pessoas/cadastroPessoas");
+		mv.addObject("pessoasObj", pessoaService.findOne(id));
 		
 		return mv;
+		
 	}
 	
 /*MÉTODO DELETAR PELO ID*/
 	@GetMapping(value = "/deletarpessoa/{id}")
 	public ModelAndView deletar(@PathVariable("id") Long id) {
-		pessoaService.delete(id);		
+		pessoaService.delete(id);			
 		ModelAndView mv = new ModelAndView("pessoas/cadastroPessoas");
 		mv.addObject(pessoaService.findAll());
+		mv.addObject("pessoasObj", new Pessoas());/*Objeto Vazio*/
+		
 		
 		return mv;
 	}

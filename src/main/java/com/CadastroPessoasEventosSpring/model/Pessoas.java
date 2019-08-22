@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Pessoas implements Serializable {
@@ -15,7 +16,7 @@ public class Pessoas implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String nome;
-	private String email;
+	private String email;	
 	private long idade;
 	private long rg;
 	private long cpf;

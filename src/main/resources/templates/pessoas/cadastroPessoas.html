@@ -20,14 +20,16 @@
 		<div class="row">
 		<div class="col-sm-9 ">
 		<h3><strong> Cadastro de Pessoas Para o Evento</strong></h3><br/>
-	<form action="salvarPessoa" method="post">
+		
+	<form action="salvarPessoa" method="post" th:object="${pessoasObj}">
 		<div class="form-group ">
-			<input name="nome" type="text" class="form-control" placeholder="Nome Completo"><br/>
-			<input name="email" type="text" class="form-control" placeholder="Email"><br/>
-			<input name="idade" type="text" class="form-control" placeholder="idade"><br/>
-			<input name="rg" type="text" class="form-control" placeholder="RG"><br/>
-			<input name="cpf" type="text" class="form-control" placeholder="CPF"><br/>
-			<input name="nascimento" type="text" class="form-control" placeholder="Data Nascimento"><br/>
+			<input name="id" type="text" class="form-control" th:field="*{id}" readonly = "readonly">id<br/>
+			<input name="nome" type="text" class="form-control" placeholder="Nome Completo" th:field="*{nome}"><br/>
+			<input name="email" type="text" class="form-control" placeholder="Email" th:field="*{email}"><br/>
+			<input autocomplete="off" name="idade" type="text" class="form-control" placeholder="idade" th:field="*{idade}"><br/>
+			<input name="rg" type="text" class="form-control" placeholder="RG" th:field="*{rg}"><br/>
+			<input name="cpf" type="text" class="form-control" th:field="*{cpf}" placeholder="CPF"><br/>
+			<input name="nascimento" type="text" class="form-control" placeholder="Data Nascimento" th:field="*{nascimento}"><br/>
 		</div>
 		<input type="submit" class="btn btn-info" value="Cadastrar">
 	</form>
