@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en" xmlns="https://www.w3.org/1999/xhtml"
+	xmlns:th="https://www.thymeleaf.org">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="">
+	
+<title>Login</title>
+</head>
+<body>
+	<br/>
+	<h3><strong> Detalhes Convidados Do Evento</strong></h3><br/>
+		<!-- -"pessoaObj", vem do método editar pelo Id do Controller "PessoasController"-- -->
+	<div class="container" th:each = "detalhes : ${pessoasObj}" >
+		<div class="row">		
+			<div class="col">
+			<p>ID: <span th:text="${detalhes.id}"> </span> </p>
+			<p>Nome: <span th:text="${detalhes.nome}"> </span> </p>
+			<p>Email: <span th:text="${detalhes.email}"> </span> </p>
+			<p>Idade: <span th:text="${detalhes.idade}"> </span> </p>
+			<p>RG: <span th:text="${detalhes.rg}"> </span> </p>
+			<p>CPF: <span th:text="${detalhes.cpf}"> </span> </p>
+			<p>Nascimento: <span th:text="${detalhes.nascimento}"> </span> </p>
+			
+			<a href="/cadastroPessoas" class="btn btn-success">Cadastrar Novo Convidado</a>
+				
+	
+			</div>
+        </div>
+    </div><br/><br/>
+    
+    <div class="col sm-12">
+    	<h2>Telefones Dos Convidados</h2>
+    </div>
+    
+    <div class="container">
+    	<div class="row">
+    	<div class="col-sm-3">
+    	<form th:action="@{/addFonePessoa/{idFonePessoa}(idFonePessoa=${pessoasObj.id})}" method="post">
+		  <div class="form-group ">
+			<input placeholder="digite seu número..." name="numero" type="text" class="form-control" ><br/>
+			<input placeholder="digite o tipo..." name="tipo" type="text" class="form-control"><br/>
+			
+	     </div>
+		<input type="submit" class="btn btn-success" value="Cadastrar Fone">
+	</form>
+    		</div>
+    	</div>
+    </div>
+ 
+ 		
+ 			<div class="container">
+ 		<div class="row">
+ 			<div class="col-sm-6">
+ 				<h3><strong>Fones Dos Convidados </strong></h3><br/>
+ 				<table class="table" border="1" >
+  					<tr>
+  						
+						<th>id</th>	  					
+    					<th>Número</th>
+    					<th>Tipo</th>
+    					
+    					<th>Editar</th>
+    					<th>Excluir</th>
+    					
+    					
+  					</tr>
+  					
+  					<tr th:each = "listaF : ${listaFones}">
+  					    <td th:text="${listaF.id}"></td>					
+    					<td th:text = "${listaF.numero}"></td>
+    					<td th:text = "${listaF.tipo}"></td>
+    					
+    					<td><a class="btn btn-danger">Editar</a></td>
+    					<td><a class="btn btn-warning">Excluir</a></td>
+    					
+    					
+  					</tr>
+				</table>
+
+ 				
+ 			</div>
+ 		</div>
+ 	</div>
+ 		
+ 		
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
+		
+	</script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

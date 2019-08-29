@@ -18,12 +18,12 @@
 	<br/>
 	<div class="container">
 		<div class="row">
-		<div class="col-sm-9 ">
+		<div class="col-sm-5 ">
 		<h3><strong> Cadastro de Pessoas Para o Evento</strong></h3><br/>
 		
 	<form action="salvarPessoa" method="post" th:object="${pessoasObj}">
 		<div class="form-group ">
-			<input name="id" type="text" class="form-control" th:field="*{id}" readonly = "readonly">id<br/>
+			<input name="id" type="text" class="form-control" th:field="*{id}" readonly = "readonly"><br/>
 			<input name="nome" type="text" class="form-control" placeholder="Nome Completo" th:field="*{nome}"><br/>
 			<input name="email" type="text" class="form-control" placeholder="Email" th:field="*{email}"><br/>
 			<input autocomplete="off" name="idade" type="text" class="form-control" placeholder="idade" th:field="*{idade}"><br/>
@@ -41,9 +41,9 @@
  		<div class="row">
  			<div class="col-mt-13">
  				<h3><strong>Lista De Convidados</strong></h3><br/>
- 				<a href="/listarConvidados" class="btn btn-warning" >Convidados Cadastrados</a><br/>
  				<table class="table" border="1" >
   					<tr>
+  						<th>Detalhes Convidados</th>
 						<th>id</th>	  					
     					<th>Nome</th>
     					<th>Email</th>
@@ -54,9 +54,11 @@
     					<th>Editar</th>
     					<th>Excluir</th>
     					
+    					
   					</tr>
   					
-  					<tr th:each = "dados : ${lista}">  	
+  					<tr th:each = "dados : ${lista}">
+						<td><a th:href="@{/detalhePessoa/{iddetalhe}(iddetalhe=${dados.id})}" class="btn btn-info">Detalhes</a></td>		  					
   					    <td th:text="${dados.id}"></td>					
     					<td th:text = "${dados.nome}"></td>
     					<td th:text = "${dados.email}"></td>
@@ -66,6 +68,7 @@
     					<td th:text = "${dados.nascimento}"></td>
     					<td><a th:href="@{/editarpessoa/{id}(id=${dados.id})}"class="btn btn-danger">Editar</a></td>
     					<td><a th:href="@{/deletarpessoa/{id}(id=${dados.id})}" class="btn btn-warning">Excluir</a></td>
+    					
     					
   					</tr>
 				</table>

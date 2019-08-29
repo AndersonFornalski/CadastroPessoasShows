@@ -57,6 +57,8 @@ public class PessoasController{
 		
         ModelAndView mv = new ModelAndView("pessoas/cadastroPessoas");
 		mv.addObject("pessoasObj", pessoaService.findOne(id));
+		mv.addObject("lista", pessoaService.findAll());
+		
 		
 		return mv;
 		
@@ -66,8 +68,9 @@ public class PessoasController{
 	@GetMapping(value = "/deletarpessoa/{id}")
 	public ModelAndView deletar(@PathVariable("id") Long id) {
 		pessoaService.delete(id);			
+		
 		ModelAndView mv = new ModelAndView("pessoas/cadastroPessoas");
-		mv.addObject(pessoaService.findAll());
+		mv.addObject("lista", pessoaService.findAll());		
 		mv.addObject("pessoasObj", new Pessoas());/*Objeto Vazio*/
 		
 		

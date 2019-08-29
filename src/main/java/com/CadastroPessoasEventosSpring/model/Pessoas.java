@@ -1,12 +1,13 @@
 package com.CadastroPessoasEventosSpring.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Pessoas implements Serializable {
@@ -21,6 +22,9 @@ public class Pessoas implements Serializable {
 	private long rg;
 	private long cpf;
 	private String nascimento;
+	
+	@OneToMany(mappedBy = "pessoas")
+	private List<TelefonePessoas> telefonePessoas;
 	
 	public Pessoas () {
 		
@@ -80,6 +84,14 @@ public class Pessoas implements Serializable {
 
 	public void setNascimento(String nascimento) {
 		this.nascimento = nascimento;
+	}	
+
+	public List<TelefonePessoas> getTelefonePessoas() {
+		return telefonePessoas;
+	}
+
+	public void setTelefonePessoas(List<TelefonePessoas> telefonePessoas) {
+		this.telefonePessoas = telefonePessoas;
 	}
 
 	@Override
